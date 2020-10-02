@@ -15,6 +15,20 @@ function* signup_post_api_v1_signup_readWatcher() {
     signup_post_api_v1_signup_readWorker
   )
 }
+function* signup_post_api_v1_signup_readWorker(action) {
+  try {
+    const result = yield call(apiService.signup_post_api_v1_signup_read, action)
+    yield put(actions.signup_post_api_v1_signup_readSucceeded(result, action))
+  } catch (err) {
+    yield put(actions.signup_post_api_v1_signup_readFailed(err, action))
+  }
+}
+function* signup_post_api_v1_signup_readWatcher() {
+  yield takeEvery(
+    types.SIGNUP_POST_API_V1_SIGNUP_READ,
+    signup_post_api_v1_signup_readWorker
+  )
+}
 function* api_v1_category_listWorker(action) {
   try {
     const result = yield call(apiService.api_v1_category_list, action)
@@ -1135,6 +1149,7 @@ function* rest_auth_user_partial_updateWatcher() {
 }
 export default function* rootSaga() {
   const sagas = [
+    signup_post_api_v1_signup_readWatcher,
     signup_post_api_v1_signup_readWatcher,
     api_v1_category_listWatcher,
     api_v1_category_createWatcher,

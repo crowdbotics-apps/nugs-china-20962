@@ -10,6 +10,12 @@ export default function apiReducer(state = initialState, action) {
       return Object.assign({}, state, {
         signup: [...state.signup, action.response]
       })
+    case types.SIGNUP_POST_API_V1_SIGNUP_READ:
+    case types.SIGNUP_POST_API_V1_SIGNUP_READ_SUCCEEDED:
+    case types.SIGNUP_POST_API_V1_SIGNUP_READ_FAILED:
+      return Object.assign({}, state, {
+        signup: [...state.signup, action.response]
+      })
     case types.API_V1_CATEGORY_LIST:
     case types.API_V1_CATEGORY_LIST_SUCCEEDED:
     case types.API_V1_CATEGORY_LIST_FAILED:

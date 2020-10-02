@@ -3,10 +3,17 @@ const signup = axios.create({
   baseURL: "https://tstcr2020092101-20512.botics.co/",
   headers: { Accept: "application/json", "Content-Type": "application/json" }
 })
+const signup = axios.create({
+  baseURL: "https://tstcr2020092101-20512.botics.co/",
+  headers: { Accept: "application/json", "Content-Type": "application/json" }
+})
 const nUGSCHINAAPI = axios.create({
   baseURL: "https://nugs-china-20962-prod.herokuapp.com/",
   headers: { Accept: "application/json", "Content-Type": "application/json" }
 })
+function signup_post_api_v1_signup_read(requestBody) {
+  return signup.post(`/api/v1/signup`, requestBody)
+}
 function signup_post_api_v1_signup_read(requestBody) {
   return signup.post(`/api/v1/signup`, requestBody)
 }
@@ -272,6 +279,7 @@ function rest_auth_user_partial_update(requestBody) {
   return nUGSCHINAAPI.patch(`/rest-auth/user/`, requestBody)
 }
 export const apiService = {
+  signup_post_api_v1_signup_read,
   signup_post_api_v1_signup_read,
   api_v1_category_list,
   api_v1_category_create,
